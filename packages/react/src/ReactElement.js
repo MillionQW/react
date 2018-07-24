@@ -93,8 +93,10 @@ function defineRefPropWarningGetter(props, displayName) {
  * the class pattern, so do not use new to call it. Also, no instanceof check
  * will work. Instead test $$typeof field against Symbol.for('react.element') to check
  * if something is a React Element.
+ * 一个用于创造 React 元素的工厂方法，不再坚持用Class的形式，所以不要使用 new 去调用它？？？
+ * 
  *
- * @param {*} type
+ * @param {*} type 元素类型
  * @param {*} key
  * @param {string|object} ref
  * @param {*} self A *temporary* helper to detect places where `this` is
@@ -102,8 +104,12 @@ function defineRefPropWarningGetter(props, displayName) {
  * can warn. We want to get rid of owner and replace string `ref`s with arrow
  * functions, and as long as `this` and owner are the same, there will be no
  * change in behavior.
+ * self 用来帮助检测 this 的指向，当调用 React.createElement 时它跟 `owner` 不同
+ * 以便我们可以发出警告。我们想要摆脱 owner 然后用 箭头函数的`ref`去替代 字符串的 `ref`
+ * 只要 `this` 和 owner 保持一致，在变现上就不会有什么改变
  * @param {*} source An annotation object (added by a transpiler or otherwise)
  * indicating filename, line number, and/or other information.
+ * source 是一个起注释作用的对象
  * @param {*} owner
  * @param {*} props
  * @internal
